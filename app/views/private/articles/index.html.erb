@@ -15,7 +15,7 @@
   <tbody>
     <% @private_articles.each do |private_article| %>
       <tr>
-        <td><%= private_article.user %></td>
+        <td><%= private_article.user.id %></td>
         <td><%= private_article.name %></td>
         <td><%= private_article.path %></td>
         <td><%= link_to 'Show', private_article %></td>
