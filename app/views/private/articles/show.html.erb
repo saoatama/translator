@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @private_article.user %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @private_article.name %>
+</p>
+
+<p>
+  <strong>Path:</strong>
+  <%= @private_article.path %>
+</p>
+
+<%= link_to 'Edit', edit_private_article_path(@private_article) %> |
+<%= link_to 'Back', private_articles_path %>
