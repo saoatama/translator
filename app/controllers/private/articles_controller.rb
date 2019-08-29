@@ -10,6 +10,8 @@ class Private::ArticlesController < ApplicationController
   # GET /private/articles/1
   # GET /private/articles/1.json
   def show
+    @path = "#{Dir.pwd}/public#{@private_article.path}"
+    @file = File.open(@path)
   end
 
   # GET /private/articles/new
