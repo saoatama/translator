@@ -14,7 +14,6 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :user_id %>
     <%= form.hidden_field :user_id, value: "#{current_user.id}" %>
   </div>
 
@@ -22,15 +21,23 @@
     <%= form.label :name %>
     <%= form.text_field :name, value: "#{@private_article.name}" %>
   </div>
-
+  
   <div class="field">
-    <%= form.label :path %>
-    <%= form.file_field :path, value: "#{@private_article.path}" %>
+    <%= form.hidden_field :path, value: "#{@file}" %>
   </div>
-
+  
   <div class="actions">
     <%= form.submit %>
   </div>
+<% end %>
+
+<%= form_tag({ controller: :articles, action: :new_file }) do %>
+  <div class="field">
+    <%= text_field_tag :text, "#{@file.read}" %>
+    <%= hidden_field_tag :path, "#{@path}" %>
+  </div>
+  
+  <%= submit_tag("update") %>
 <% end %>
 
 

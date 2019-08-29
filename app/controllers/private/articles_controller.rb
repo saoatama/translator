@@ -21,6 +21,8 @@ class Private::ArticlesController < ApplicationController
 
   # GET /private/articles/1/edit
   def edit
+     @path = "#{Dir.pwd}/public#{@private_article.path}"
+     @file = File.open(@path, "r+")
   end
 
   # POST /private/articles
@@ -38,10 +40,23 @@ class Private::ArticlesController < ApplicationController
       end
     end
   end
-
+  
+  def new_file
+    @path = params[:path]
+    @dir = File.dirname("#{@path}")
+    @count = Dir::entries(@dir).count
+    @new_file = "#{@dir}/#{@count}.txt"
+    File.open(@new_file, "w") {
+      |file| file.write "#{params[:text]}"
+    }
+    redirect_to action: 'index'
+  end
+  
+  
   # PATCH/PUT /private/articles/1
   # PATCH/PUT /private/articles/1.json
   def update
+     
     respond_to do |format|
       if @private_article.update(private_article_params)
         format.html { redirect_to @private_article, notice: 'Article was successfully updated.' }
