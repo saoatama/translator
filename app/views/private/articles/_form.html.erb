@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.hidden_field :user_id, value: "#{current_user.id}" %>
   </div>
 
   <div class="field">
@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= form.label :path %>
-    <%= form.text_field :path %>
+    <%= form.file_field :path %>
   </div>
 
   <div class="actions">
