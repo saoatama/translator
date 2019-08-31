@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <title>翻訳文置き場|目指せ翻訳家</title>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'scaffolds', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%#= favicon_link_tag('favicon.ico') %>
+  </head>
+
+  <body>
+        <%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class:"logout btn btn-primary" %>
+      <main>
+          <%= yield %>
+      </main>
+      <script>
+        
+      </script>
+  </body>
+</html>

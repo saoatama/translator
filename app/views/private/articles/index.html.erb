@@ -1,31 +1,28 @@
 <p id="notice"><%= notice %></p>
-<%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class:"logout btn btn-primary" %>
-<h1>Private Articles</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Name</th>
-      <th>Path</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @private_articles.each do |private_article| %>
-      <tr>
-        <td><%= private_article.user.id %></td>
-        <td><%= private_article.name %></td>
-        <td><%= private_article.path %></td>
-        <td><%= link_to 'Show', private_article %></td>
-        <td><%= link_to 'Edit', edit_private_article_path(private_article) %></td>
-        <td><%= link_to 'Destroy', private_article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+  <% @private_articles.each do |private_article| %>
+  <div class="index-list">
+    <div class="row">
+      <p class="col-sm-4 index-title"><%= private_article.name %></p>
+      <div class="col-sm-8">
+      <%= link_to '閲覧', private_article, class: "btn btn-info" %>
+      <%= link_to '推敲', edit_private_article_path(private_article), class: "btn btn-success" %>
+      <%= link_to '削除', private_article, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+      </div>
+    </div>
+    <% @file = File.open("./public/#{private_article.path}", "r") %>
+      <div class="index-text"></div><%= @file.read %></div>
+      <%= @file.close %>
+  </div>
+  <% end %>
+  
 <br>
-
-<%= link_to 'New Private Article', new_private_article_path %>
+<%= link_to '新規登録', new_private_article_path, class: "btn btn-dark" %>
+<script>
+  $('.index-list').mouseenter(function(){
+    $(this).addClass("index-list-color");
+  });
+  $('.index-list').mouseleave(function(){
+    $(this).removeClass("index-list-color");
+  });
+</script>
