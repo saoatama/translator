@@ -1,3 +1,4 @@
+require 'fileutils'
 class Private::ArticlesController < ApplicationController
   before_action :set_private_article, only: [:show, :edit, :update, :destroy]
 
@@ -21,8 +22,11 @@ class Private::ArticlesController < ApplicationController
 
   # GET /private/articles/1/edit
   def edit
-     @path = "#{Dir.pwd}/public#{@private_article.path}"
-     @file = File.open(@path, "r+")
+    @base_dir = File.dirname("#{@private_article.path}")
+    @dir = Dir.open("./public/#{@base_dir}")
+    @path = "#{Dir.pwd}/public#{@private_article.path}"
+    @file = File.open(@path, "r+")
+    #@s = File::Stat.new(@path)
   end
 
   # POST /private/articles
