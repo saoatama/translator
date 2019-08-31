@@ -1,4 +1,6 @@
 <p>タイトル: <%= @private_article.name %></p><br>
-<p>ソース: <%= @private_article.source %></p>
+<% if @private_article.source %>
+    <p>ソース: <%= @private_article.source %></p>
+<% end %>
 <%= @file.read %>
 <%= @file.close %>
