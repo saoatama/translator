@@ -1,6 +1,45 @@
 <h1>Editing Private Article</h1>
 
-<%= render 'form', private_article: @private_article %>
+<%= form_with(model: @private_article, local: true) do |form| %>
+  <% if @private_article.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(private_article.errors.count, "error") %> prohibited this private_article from being saved:</h2>
+
+      <ul>
+      <% private_article.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.hidden_field :user_id, value: "#{current_user.id}" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, value: "#{@private_article.name}" %>
+  </div>
+  
+  <div class="field">
+    <%= form.hidden_field :path, value: "#{@file}" %>
+  </div>
+  
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%= form_tag({ controller: :articles, action: :new_file }) do %>
+  <div class="field">
+    <%= text_field_tag :text, "#{@file.read}" %>
+    <%= hidden_field_tag :path, "#{@path}" %>
+  </div>
+  
+  <%= submit_tag("update") %>
+<% end %>
+
 
 <%= link_to 'Show', @private_article %> |
 <%= link_to 'Back', private_articles_path %>
