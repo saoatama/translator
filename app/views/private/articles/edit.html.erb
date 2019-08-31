@@ -34,6 +34,7 @@
   <% @dir.each do |file| %>
     <% if /txt/ =~ file %>
       <%= file %>
+      <%= link_to "Delete File", private_delete_file_url(file_name: "#{@base_dir}/#{file}") %> 
     <% end %>
   <% end %>
   <% @dir.close %>
