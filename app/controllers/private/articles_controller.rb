@@ -25,7 +25,12 @@ class Private::ArticlesController < ApplicationController
     @base_dir = File.dirname("#{@private_article.path}")
     @dir = Dir.open("./public/#{@base_dir}")
     @path = "#{Dir.pwd}/public#{@private_article.path}"
-    @file = File.open(@path, "r+")
+    begin
+      @file = File.open(@path, "r+")
+    rescue
+      @private_article.destroy
+      redirect_to action: 'index'
+    end
     #@s = File::Stat.new(@path)
   end
 
@@ -57,6 +62,11 @@ class Private::ArticlesController < ApplicationController
     redirect_to action: 'index'
   end
   
+  def delete_file
+    @path = "public#{params[:file_name]}"
+    File.delete(@path)
+    redirect_to action: 'index'
+  end
   
   # PATCH/PUT /private/articles/1
   # PATCH/PUT /private/articles/1.json

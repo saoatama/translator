@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   namespace :private do
     resources :articles
     post "articles/new_file" => "articles#new_file"
+    get "delete_file" => "articles#delete_file"
   end
   
   devise_for :users, :controllers => {
