@@ -1,0 +1,9 @@
+<% @private_articles.each do |private_article| %>
+    <%= private_article.name %>
+    <% @file = File.open("./public#{private_article.path}", "r") %>
+    <ul>
+        <li><%= link_to "閲覧", "show/#{private_article.id}" %></li>
+    </ul>
+    <br>
+    <%= @file.read %>
+<% end %>

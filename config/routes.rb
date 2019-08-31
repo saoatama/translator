@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: "public#root"
+  get "show/:id" => "public#show"
   namespace :private do
     resources :articles
     post "articles/new_file" => "articles#new_file"
