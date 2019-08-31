@@ -47,10 +47,11 @@ class Private::ArticlesController < ApplicationController
   
   def new_file
     @path = params[:path]
-    @dir = File.dirname("#{@path}")
+    @dir = File.dirname(@path)
     @count = Dir::entries(@dir).count
     @new_file = "#{@dir}/#{@count}.txt"
-    File.open(@new_file, "w") {
+    File.rename("#{@path}", "#{@new_file}")
+    File.open(@path, "w") {
       |file| file.write "#{params[:text]}"
     }
     redirect_to action: 'index'
