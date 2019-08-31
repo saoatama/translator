@@ -4,7 +4,7 @@ class Private::ArticlesController < ApplicationController
   # GET /private/articles
   # GET /private/articles.json
   def index
-    @private_articles = Private::Article.all
+    @private_articles = Private::Article.where(user_id: current_user.id)
   end
 
   # GET /private/articles/1

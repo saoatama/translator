@@ -59,8 +59,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
-  devise_for :users, :controllers => {
-    :registrations => 'users/registrations',
-    :sessions => 'users/sessions'
-  }
 end
