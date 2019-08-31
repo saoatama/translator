@@ -101,6 +101,6 @@ class Private::ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def private_article_params
-      params.require(:private_article).permit(:user_id, :name, :path)
+      params.require(:private_article).permit(:user_id, :name, :path, :source)
     end
 end
