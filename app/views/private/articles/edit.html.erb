@@ -1,5 +1,4 @@
 <h1>Editing Private Article</h1>
-
 <%= form_with(model: @private_article, local: true) do |form| %>
   <% if @private_article.errors.any? %>
     <div id="error_explanation">
@@ -31,6 +30,14 @@
   </div>
 <% end %>
 
+<div class="nav">
+  <% @dir.each do |file| %>
+    <% if /txt/ =~ file %>
+      <%= file %>
+    <% end %>
+  <% end %>
+  <% @dir.close %>
+</div>  
 <%= form_tag({ controller: :articles, action: :new_file }) do %>
   <div class="field">
     <%= text_field_tag :text, "#{@file.read}" %>
