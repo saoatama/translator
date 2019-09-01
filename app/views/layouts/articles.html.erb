@@ -22,7 +22,12 @@
           <%= yield %>
       </main>
       <script>
-        
+        $(".submit").mouseenter(function(){
+          $(this).addClass("submit-color");
+        });
+        $(".submit").mouseleave(function(){
+          $(this).removeClass("submit-color");
+        });
       </script>
   </body>
 </html>
