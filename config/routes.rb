@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :articles
     post "articles/new_file" => "articles#new_file"
     get "delete_file" => "articles#delete_file"
+    get "window/:user_id/:article_id/:file" => "articles#window"
   end
   
   devise_for :users, :controllers => {

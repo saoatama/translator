@@ -12,7 +12,12 @@
   </head>
 
   <body>
+    <header>
+      <div class="row">
+        <span class="col-sm-8"> </span>
         <%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class:"logout btn btn-primary" %>
+      </div>
+    </header>
       <main>
           <%= yield %>
       </main>
