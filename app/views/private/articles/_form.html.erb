@@ -12,26 +12,26 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :user_id %>
+    <%#= form.label :user_id %>
     <%= form.hidden_field :user_id, value: "#{current_user.id}" %>
   </div>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <p>訳文タイトル: <%= form.text_field :name %></p>
   </div>
 
   <div class="field">
-    <%= form.label :path %>
-    <%= form.file_field :path %>
+    <p>ファイルアップロード: <%= form.file_field :path %></p>
   </div>
   
   <div class="field">
-    <%= form.label :source %>
-    <%= form.text_field :source %>
+    <p>ソースＵＲＬ: <%= form.text_field :source %></p>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  
+  <div class="action">
+    <%= button_tag :type => "submit", :class =>"btn" do %>
+      <i class="fas fa-plus"></i> 新規訳文登録
+    <% end %>
   </div>
+  
 <% end %>

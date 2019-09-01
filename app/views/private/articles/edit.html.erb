@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-  <span class="inline_block">
+  <span class="inline_block back">
     <i class="fas fa-hand-point-left"></i> <%= link_to 'Back', private_articles_path %>
   </span>
   <div class="field">
@@ -31,7 +31,7 @@
   
   <div class="actions">
     <%= button_tag :type => "submit", :class =>"btn" do %>
-      <i class="fas fa-plus"></i> リソース更新
+      <i class="far fa-edit"></i> リソース更新
     <% end %>
   </div>
 <% end %>
@@ -42,7 +42,7 @@
 
 
 <div class="dropdown">
-  <span class="inline_block">
+  <span class="inline_block back">
     <i class="fas fa-hand-point-left"></i> <%= link_to 'Back', private_articles_path %>
   </span>
 <div class="nav inline_block">
@@ -61,7 +61,7 @@
 
 <%= form_tag({ controller: :articles, action: :new_file }) do %>
   <%= button_tag :type => "submit", :class =>"btn" do %>
-    <i class="fas fa-plus"></i> ファイル更新
+    <i class="far fa-edit"></i> ファイル更新
   <% end %>
   
   <div class="field">

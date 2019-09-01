@@ -131,6 +131,10 @@ label {
   display: none;
 }
 
+.open-drop {
+  margin-bottom: 10px;
+}
+
 .logout {
   margin-left: 80%;
 }
@@ -139,4 +143,12 @@ label {
   margin-left: 10%;
   margin-right: 20%;
   line-height: 20px;
+}
+
+.back {
+  font-size: 20px;
+}
+
+main {
+  margin: 10px;
 }
