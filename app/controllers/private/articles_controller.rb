@@ -1,5 +1,6 @@
 class Private::ArticlesController < ApplicationController
   layout 'articles'
+  before_action :authenticate_user!
   before_action :set_private_article, only: [:show, :edit, :update, :destroy]
 
   # GET /private/articles

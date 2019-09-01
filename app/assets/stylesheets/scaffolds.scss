@@ -102,7 +102,7 @@ label {
 }
 
 .index-title {
-  font-weight: 800px;
+  font-weight: 800;
   font-size: 16px;
   margin-top: 10px;
 }
@@ -112,6 +112,7 @@ label {
 }
 
 .edit-text {
+  margin: 10px;
   width: 800px;
   height: 500px;
   display: inline-block;
@@ -131,6 +132,10 @@ label {
   display: none;
 }
 
+.open-drop {
+  margin-bottom: 10px;
+}
+
 .logout {
   margin-left: 80%;
 }
@@ -139,4 +144,26 @@ label {
   margin-left: 10%;
   margin-right: 20%;
   line-height: 20px;
+}
+
+.back {
+  font-size: 20px;
+}
+
+main {
+  margin: 10px;
+}
+
+.label {
+  color: #33332e;
+  font-size: 20px;
+}
+
+.submit-color {
+  background-color: #f5deb3;
+}
+
+.back-color {
+  color: #bdb76b;
+  cursor: pointer;
 }
