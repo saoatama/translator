@@ -68,6 +68,11 @@ class Private::ArticlesController < ApplicationController
     redirect_to action: 'index'
   end
   
+  def window
+    @file = File.open("./public/uploads/#{params[:user_id]}/#{params[:article_id]}/#{params[:file]}.txt", "r")
+    render plain: @file.read
+  end
+  
   # PATCH/PUT /private/articles/1
   # PATCH/PUT /private/articles/1.json
   def update

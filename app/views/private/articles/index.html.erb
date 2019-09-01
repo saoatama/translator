@@ -11,13 +11,12 @@
       </div>
     </div>
     <% @file = File.open("./public/#{private_article.path}", "r") %>
-      <div class="index-text"></div><%= @file.read %></div>
+      <div class="index-text"><%= @file.read %></div>
       <%= @file.close %>
   </div>
   <% end %>
   
 <br>
-<%= link_to '新規登録', new_private_article_path, class: "btn btn-dark" %>
 <script>
   $('.index-list').mouseenter(function(){
     $(this).addClass("index-list-color");

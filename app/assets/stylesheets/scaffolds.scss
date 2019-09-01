@@ -91,7 +91,10 @@ label {
 }
 
 .index-text {
-  width: 60%;
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .index-list-color {
@@ -106,4 +109,28 @@ label {
 
 .button_to {
   width: 0px;
+}
+
+.edit-text {
+  width: 800px;
+  height: 500px;
+  display: inline-block;
+}
+
+.nav {
+  background-color: beige;
+  padding: 1%;
+  display: inline-block;
+}
+
+.inline_block {
+ display: inline_block; 
+}
+
+.dropdown {
+  display: none;
+}
+
+.logout {
+  margin-left: 80%;
 }

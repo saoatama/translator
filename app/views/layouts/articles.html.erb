@@ -12,7 +12,12 @@
   </head>
 
   <body>
-        <%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class:"logout btn btn-primary" %>
+      <div class="row">
+        <span class="col-sm-4 logout">
+          <%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class:"btn btn-primary" %>
+        </span>
+        <span class="col-sm-8"><%= link_to '新規登録', new_private_article_path, class: "btn btn-dark" %></span>
+      </div>
       <main>
           <%= yield %>
       </main>
