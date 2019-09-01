@@ -91,7 +91,10 @@ label {
 }
 
 .index-text {
-  width: 60%;
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .index-list-color {
@@ -128,10 +131,6 @@ label {
   display: none;
 }
 
-header {
-  text-align: center;
-}
-
 .logout {
-  margin-left: 90%;
+  margin-left: 80%;
 }
