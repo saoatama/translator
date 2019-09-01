@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
-
-<%= @file.read %>
-
-<%= link_to 'Edit', edit_private_article_path(@private_article) %> |
-<%= link_to 'Back', private_articles_path %>
+<span class="inline_block">
+    <i class="fas fa-hand-point-left"></i> <%= link_to 'Back', private_articles_path %>
+ </span>
+<div class="show-text">
+    <%= @file.read %>
+</div>
