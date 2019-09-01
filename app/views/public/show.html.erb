@@ -1,6 +1,22 @@
-<p>タイトル: <%= @private_article.name %></p><br>
+<span class="inline_block back">
+    <i class="fas fa-hand-point-left back"></i> <%= link_to 'Back', private_articles_path %>
+  </span>
+<p class="title"><%= @private_article.name %></p><br>
 <% if @private_article.source %>
     <p>ソース: <%= @private_article.source %></p>
 <% end %>
 <%= @file.read %>
 <%= @file.close %>
+
+<script>
+    $(".back").click(function(){
+       history.back(); 
+    });
+    
+    $(".back").mouseenter(function(){
+        $(this).addClass("back-color");
+    });
+    $(".back").mouseleave(function(){
+        $(this).removeClass("back-color");
+    });
+</script>

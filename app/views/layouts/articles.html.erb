@@ -28,6 +28,16 @@
         $(".submit").mouseleave(function(){
           $(this).removeClass("submit-color");
         });
+        $(".back").click(function(){
+       history.back(); 
+    });
+    
+    $(".back").mouseenter(function(){
+        $(this).addClass("back-color");
+    });
+    $(".back").mouseleave(function(){
+        $(this).removeClass("back-color");
+    });
       </script>
   </body>
 </html>
