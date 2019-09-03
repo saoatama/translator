@@ -47,13 +47,15 @@
   </span>
 <div class="nav inline_block">
   <% @dir.each do |file| %>
-    <% if /txt/ =~ file %>
-      <abbr title="クリックで旧ファイルを表示">
-        <%= link_to "#{file}", private_url(article_id: @private_article.id, user_id: current_user.id, file: file), target: "_blank" %>
-      </abbr>
-      <abbr title="旧ファイルを削除">
-        <%= link_to "削除 ", private_delete_file_url(file_name: "#{@base_dir}/#{file}") %>
-      </abbr>|
+    <% unless "#{@base_dir}/#{file}" == "#{@private_article.path}" %>
+      <% if /txt/ =~ file %>
+        <abbr title="クリックで旧ファイルを表示">
+          <%= link_to "#{file}", private_url(article_id: @private_article.id, user_id: current_user.id, file: file), target: "_blank" %>
+        </abbr>
+        <abbr title="旧ファイルを削除">
+          <%= link_to "削除 ", private_delete_file_url(file_name: "#{@base_dir}/#{file}"), data: { confirm: 'Are you sure?' } %>
+        </abbr>|
+      <% end %>
     <% end %>
   <% end %>
   <% @dir.close %>

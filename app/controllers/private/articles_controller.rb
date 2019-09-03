@@ -42,8 +42,8 @@ class Private::ArticlesController < ApplicationController
 
     respond_to do |format|
       if @private_article.save
-        format.html { redirect_to @private_article, notice: 'Article was successfully created.' }
-        format.json { render :show, status: :created, location: @private_article }
+        format.html { redirect_to action: 'index', notice: 'Article was successfully created.' }
+        format.json { render :index, status: :created, location: @private_article }
       else
         format.html { render :new }
         format.json { render json: @private_article.errors, status: :unprocessable_entity }
@@ -92,6 +92,14 @@ class Private::ArticlesController < ApplicationController
   # DELETE /private/articles/1
   # DELETE /private/articles/1.json
   def destroy
+    @base_dir = File.dirname("public#{@private_article.path}")
+    @dir = Dir.open(@base_dir)
+    @dir.each do |file|
+      if /txt/ =~ file
+        File.delete("#{@base_dir}/#{file}")
+      end
+    end
+    Dir.rmdir(@base_dir)
     @private_article.destroy
     respond_to do |format|
       format.html { redirect_to private_articles_url, notice: 'Article was successfully destroyed.' }
