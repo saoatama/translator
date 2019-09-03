@@ -10,9 +10,13 @@
       <%= link_to '削除', private_article, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
       </div>
     </div>
-    <% @file = File.open("./public/#{private_article.path}", "r") %>
-      <div class="index-text"><%= @file.read %></div>
-      <%= @file.close %>
+    <% begin %>
+      <% @file = File.open("./public/#{private_article.path}", "r") %>
+        <div class="index-text"><%= @file.read %></div>
+        <%= @file.close %>
+    <% rescue %>
+        <%# DO NOGHIN %>
+    <% end %>
   </div>
   <% end %>
   

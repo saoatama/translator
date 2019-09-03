@@ -68,7 +68,9 @@
   <br>
   <div class="field">
     <%#= text_field_tag :text, "#{@file.read}", class:"edit-text" %>
-    <%= text_area_tag :text, "#{@file.read}", class:"edit-text" %>
+    <% begin %>
+      <%= text_area_tag :text, "#{@file.read}", class:"edit-text" %>
+    <% end %>
     <%= hidden_field_tag :path, "#{@path}" %>
   </div>
   <%#= submit_tag("update") %>
