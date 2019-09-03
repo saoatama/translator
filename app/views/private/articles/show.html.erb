@@ -3,5 +3,7 @@
     <i class="fas fa-hand-point-left"></i> <%= link_to 'Back', private_articles_path %>
  </span>
 <div class="show-text">
-    <%= @file.read %>
+    <% begin %>
+        <%= @file.read %>
+    <% end %>
 </div>
