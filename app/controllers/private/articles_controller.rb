@@ -13,7 +13,11 @@ class Private::ArticlesController < ApplicationController
   # GET /private/articles/1.json
   def show
     @path = "#{Dir.pwd}/public#{@private_article.path}"
-    @file = File.open(@path)
+    begin
+      @file = File.open(@path)
+    rescue
+      redirect_to action: 'index'
+    end
   end
 
   # GET /private/articles/new
@@ -23,13 +27,17 @@ class Private::ArticlesController < ApplicationController
 
   # GET /private/articles/1/edit
   def edit
-    @base_dir = File.dirname("#{@private_article.path}")
-    @dir = Dir.open("./public/#{@base_dir}")
-    @path = "#{Dir.pwd}/public#{@private_article.path}"
     begin
-      @file = File.open(@path, "r+")
+      @base_dir = File.dirname("#{@private_article.path}")
+      @dir = Dir.open("./public/#{@base_dir}")
+      @path = "#{Dir.pwd}/public#{@private_article.path}"
+      begin
+        @file = File.open(@path, "r+")
+      rescue
+        @private_article.destroy
+        redirect_to action: 'index'
+      end
     rescue
-      @private_article.destroy
       redirect_to action: 'index'
     end
     #@s = File::Stat.new(@path)
@@ -92,14 +100,18 @@ class Private::ArticlesController < ApplicationController
   # DELETE /private/articles/1
   # DELETE /private/articles/1.json
   def destroy
-    @base_dir = File.dirname("public#{@private_article.path}")
-    @dir = Dir.open(@base_dir)
-    @dir.each do |file|
-      if /txt/ =~ file
-        File.delete("#{@base_dir}/#{file}")
+    begin
+      @base_dir = File.dirname("public#{@private_article.path}")
+      @dir = Dir.open(@base_dir)
+      @dir.each do |file|
+        if /txt/ =~ file
+          File.delete("#{@base_dir}/#{file}")
+        end
       end
+      Dir.rmdir(@base_dir)
+    rescue
+    #DO NOTHING
     end
-    Dir.rmdir(@base_dir)
     @private_article.destroy
     respond_to do |format|
       format.html { redirect_to private_articles_url, notice: 'Article was successfully destroyed.' }
