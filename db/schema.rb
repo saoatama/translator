@@ -12,8 +12,11 @@
 
 ActiveRecord::Schema.define(version: 2019_08_29_122253) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "private_articles", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "name"
     t.string "path"
     t.string "source"
@@ -34,4 +37,5 @@ ActiveRecord::Schema.define(version: 2019_08_29_122253) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "private_articles", "users"
 end
