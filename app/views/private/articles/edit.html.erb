@@ -1,0 +1,82 @@
+<%= form_with(model: @private_article, local: true) do |form| %>
+  <% if @private_article.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(private_article.errors.count, "error") %> prohibited this private_article from being saved:</h2>
+
+      <ul>
+      <% private_article.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <span class="inline_block back">
+    <i class="fas fa-hand-point-left"></i> <%= link_to 'Back', private_articles_path %>
+  </span>
+  <div class="field">
+    <%= form.hidden_field :user_id, value: "#{current_user.id}" %>
+  </div>
+
+  <div class="field">
+    <p class="label">タイトル：<%= form.text_field :name, value: "#{@private_article.name}" %></p>
+  </div>
+  
+  <div class="field">
+    <p class="label">ソースＵＲＬ：<%= form.text_field :source, value: "#{@private_article.source}" %></p>
+  </div>
+  
+  <div class="field">
+    <%= form.hidden_field :path, value: "#{@file}" %>
+  </div>
+  
+  <div class="actions">
+    <%= button_tag :type => "submit", :class =>"btn submit" do %>
+      <i class="far fa-edit"></i> リソース更新
+    <% end %>
+  </div>
+<% end %>
+
+<%= button_tag :class=> "btn open-drop submit" do %>
+  <i class="fas fa-scroll"></i> 訳文推敲
+<% end %>
+
+
+<div class="dropdown">
+  <span class="inline_block back">
+    <i class="fas fa-hand-point-left"></i> <%= link_to 'Back', private_articles_path %>
+  </span>
+<div class="nav inline_block">
+  <% @dir.each do |file| %>
+    <% unless "#{@base_dir}/#{file}" == "#{@private_article.path}" %>
+      <% if /txt/ =~ file %>
+        <abbr title="クリックで旧ファイルを表示">
+          <%= link_to "#{file}", private_url(article_id: @private_article.id, user_id: current_user.id, file: file), target: "_blank" %>
+        </abbr>
+        <abbr title="旧ファイルを削除">
+          <%= link_to "削除 ", private_delete_file_url(file_name: "#{@base_dir}/#{file}"), data: { confirm: 'Are you sure?' } %>
+        </abbr>|
+      <% end %>
+    <% end %>
+  <% end %>
+  <% @dir.close %>
+</div>
+
+<%= form_tag({ controller: :articles, action: :new_file }) do %>
+  <%= button_tag :type => "submit", :class =>"btn submit" do %>
+    <i class="far fa-edit"></i> ファイル更新
+  <% end %>
+  <br>
+  <div class="field">
+    <%#= text_field_tag :text, "#{@file.read}", class:"edit-text" %>
+    <%= text_area_tag :text, "#{@file.read}", class:"edit-text" %>
+    <%= hidden_field_tag :path, "#{@path}" %>
+  </div>
+  <%#= submit_tag("update") %>
+<% end %>
+</div>
+
+<script>
+  $(".open-drop").click(function(){
+    $(".dropdown").toggle();
+  });
+</script>

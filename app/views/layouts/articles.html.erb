@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <title>翻訳文置き場|目指せ翻訳家</title>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'scaffolds', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%#= favicon_link_tag('favicon.ico') %>
+  </head>
+
+  <body>
+      <div class="row">
+        <span class="col-sm-4 logout">
+          <%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class:"btn btn-primary" %>
+        </span>
+        <span class="col-sm-8"><%= link_to '新規登録', new_private_article_path, class: "btn btn-dark" %></span>
+      </div>
+      <main>
+          <%= yield %>
+      </main>
+      <script>
+        $(".submit").mouseenter(function(){
+          $(this).addClass("submit-color");
+        });
+        $(".submit").mouseleave(function(){
+          $(this).removeClass("submit-color");
+        });
+        $(".back").click(function(){
+       history.back(); 
+    });
+    
+    $(".back").mouseenter(function(){
+        $(this).addClass("back-color");
+    });
+    $(".back").mouseleave(function(){
+        $(this).removeClass("back-color");
+    });
+      </script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+<% @private_articles.each do |private_article| %>
+<div class="root-box">
+    <% @file = File.open("./public#{private_article.path}", "r") %>
+    <%= link_to "#{private_article.name}", "show/#{private_article.id}", class: "title" %>
+    <br>
+    <div class="root-text">
+        <%= link_to "#{@file.read}", "show/#{private_article.id}" %>
+    </div>
+</div>
+<% end %>

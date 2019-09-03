@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+  <% @private_articles.each do |private_article| %>
+  <div class="index-list">
+    <div class="row">
+      <p class="col-sm-4 index-title"><%= private_article.name %></p>
+      <div class="col-sm-8">
+      <%= link_to '閲覧', private_article, class: "btn btn-info" %>
+      <%= link_to '推敲', edit_private_article_path(private_article), class: "btn btn-success" %>
+      <%= link_to '削除', private_article, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+      </div>
+    </div>
+    <% @file = File.open("./public/#{private_article.path}", "r") %>
+      <div class="index-text"><%= @file.read %></div>
+      <%= @file.close %>
+  </div>
+  <% end %>
+  
+<br>
+<script>
+  $('.index-list').mouseenter(function(){
+    $(this).addClass("index-list-color");
+  });
+  $('.index-list').mouseleave(function(){
+    $(this).removeClass("index-list-color");
+  });
+</script>

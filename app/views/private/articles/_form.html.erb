@@ -1,0 +1,37 @@
+<%= form_with(model: private_article, local: true) do |form| %>
+  <% if private_article.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(private_article.errors.count, "error") %> prohibited this private_article from being saved:</h2>
+
+      <ul>
+      <% private_article.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%#= form.label :user_id %>
+    <%= form.hidden_field :user_id, value: "#{current_user.id}" %>
+  </div>
+
+  <div class="field">
+    <p class="label">訳文タイトル: <%= form.text_field :name %></p>
+  </div>
+
+  <div class="field">
+    <p class="label">ファイルアップロード: <%= form.file_field :path %></p>
+  </div>
+  
+  <div class="field">
+    <p class="label">ソースＵＲＬ: <%= form.text_field :source %></p>
+  </div>
+  
+  <div class="action">
+    <%= button_tag :type => "submit", :class =>"btn submit" do %>
+      <i class="fas fa-plus"></i> 新規訳文登録
+    <% end %>
+  </div>
+  
+<% end %>
